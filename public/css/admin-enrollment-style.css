@@ -1,0 +1,114 @@
+.form-container-box {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.form-container-box h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+.top-right-menu li {
+    display: flex;
+    align-items: center;
+    padding: 5px 12px;
+    transition: background 0.3s;
+}
+.top-right-menu li a {
+    display: flex;
+    align-items: center;
+    padding: 0; 
+}
+.current-page a {
+    font-weight: bold;
+    text-decoration: underline !important;
+}
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+form input[type="text"], 
+form input[type="password"], 
+form input[type="email"],
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+form button {
+    background-color: #800000;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+form button:hover {
+    background-color: #990000	;
+}
+.back-button:hover {
+    stroke: #ff6600 !important;
+    transform: scale(1.5);
+}
+.enrollment-content-area {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.table-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.enrollment-content-area h3 {
+    margin-top: 30px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ddd;
+    color: #333;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+th {
+    background-color: #800000;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+a { 
+    text-decoration: none;
+    color: #800000;
+}
+a:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+}
+
+a.btn-primary {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #800000;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}

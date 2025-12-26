@@ -1,0 +1,136 @@
+.progress-bar-faculty, .progress-bar-student {
+            box-sizing: border-box; 
+        }
+
+.statistics-dashboard {
+    max-width: 1200px; 
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto; 
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    padding: 0; 
+}
+.stat-card {
+    background-color: #ffffff;
+    border-left: 5px solid;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; 
+    flex-direction: column;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.stat-card h3 {
+    margin-top: 0;
+    color: #555;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+.stat-card p {
+    font-size: 2.8em;
+    font-weight: bold;
+    margin: 5px 0 0;
+}
+.courses { border-left-color: #800000; }
+.courses p { color: #800000; }
+.enrolled { border-left-color: #800000; }
+.enrolled p { color: #800000; }
+.users-summary { border-left-color: #800000; }
+.users-summary p { color: #800000; }
+
+/*TOTAL ENROLLMENT RECORDS CARD STYLES*/
+.center-card {
+    grid-column: 1 / -1; 
+    text-align: center;
+    background-color: #ffffff;
+    border-left: 4px solid #800000;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+}
+.center-card h3 {
+    margin: 0 0 10px 0;
+    color: #800000;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+.center-card p {
+    font-size: 4em; 
+    font-weight: bold;
+    color: #800000;
+    margin: 0;
+}
+
+.user-distribution-card {
+    grid-column: 1 / -1; 
+    background-color: #f8f9fa;
+    border-left: 5px solid #800000;
+    padding: 30px;
+}
+.progress-bar-container {
+    width: 100%;
+    height: 30px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    display: flex;
+    overflow: hidden;
+    margin: 15px 0;
+}
+.progress-bar-faculty {
+    height: 100%;
+    background-color: #ffc107; 
+    float: left;
+    text-align: right;
+    line-height: 30px;
+    color: #333;
+    font-weight: bold;
+    padding-right: 10px;
+    transition: width 1s ease-in-out;
+}
+.progress-bar-student {
+    height: 100%;
+    background-color: #800000; 
+    float: right;
+    text-align: left;
+    line-height: 30px;
+    color: white;
+    font-weight: bold;
+    padding-left: 10px;
+    transition: width 1s ease-in-out;
+}
+.legend {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    font-weight: 500;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+}
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 8px;
+}
+
+/* Responsive adjustment: force single column on small screens */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .center-card, .user-distribution-card {
+        grid-column: auto; 
+    }
+}
