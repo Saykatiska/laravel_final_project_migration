@@ -137,29 +137,130 @@ a.btn-primary {
 }
 
 /* Modal Content Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto; /* 10% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 400px; /* Set a fixed width for the popup */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+/* Enhanced Modal Overlay */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker backdrop */
+    backdrop-filter: blur(4px); /* Modern blur effect */
+    animation: fadeIn 0.3s ease;
 }
 
-/* The Close Button (x) */
+/* Modal Content Box */
+.modal-content {
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 0; /* Remove default padding to allow header background */
+    border: none;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    overflow: hidden; /* Clips children to border radius */
+    animation: slideDown 0.4s ease;
+}
+
+/* Modal Header Section */
+.modal-header {
+    background-color: #800000;
+    color: white;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Modal Body/Form Section */
+.modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+}
+.modal-body {
+    padding: 25px;
+}
+
+/* Ensure both have exactly the same height and border logic */
+.form-group input, 
+.form-group select {
+    height: 42px; /* Fixed height ensures alignment if side-by-side */
+    line-height: 1.25;
+}
+
+.form-group select {
+    /* Reset default browser appearance */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    /* Custom Arrow Icon (SVG background) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    
+    /* Ensure text doesn't overlap the arrow */
+    padding-right: 40px !important;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+/* Match the focus state of your inputs */
+/* Form Spacing inside Modals */
+.form-group {
+    margin-bottom: 1.2rem;
+    text-align: left; /* Keep labels left-aligned inside centered modals */
+}
+
+.form-group label {
+    display: block;
+    font-size: large;
+    color: black;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+/* Interaction States */
+.form-group input:focus, 
+.form-group select:focus {
+    outline: none;
+    border-color: #800000;
+    box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.15);
+}
+
+/* The Close Button (X) */
 .close {
-    color: #aaa;
-    float: right;
+    color: rgba(255, 255, 255, 0.7);
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    line-height: 1;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+.close:hover {
+    color: white;
 }
 
 /* Styling for form groups inside the modal */

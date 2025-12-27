@@ -272,7 +272,7 @@
 }
 
 label {
-  font-size: 13px;
+  font-size: 20px;
   color: #333;
 }
 
@@ -401,27 +401,36 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-td a.btn-edit, td a.btn-delete {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-a.btn-edit {
-    background-color: #a00000;
-    color: white;
-    padding: 8px 12px;
+/* Action Buttons Styling */
+.btn-edit, .btn-delete {
+    display: inline-block; /* Essential to apply width and padding properly */
+    width: 80px;           /* Set a fixed width that fits your longest text */
+    padding: 8px 0;        /* Vertical padding, 0 horizontal since width is fixed */
     border-radius: 4px;
+    font-size: 0.85rem;
+    text-align: center;    /* Centers the text inside the fixed-width button */
+    margin: 0 2px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-decoration: none; /* Removes underline from links */
+    font-weight: 600;
 }
 
-a.btn-edit:hover {
-    background-color: #b30000;
+/* Specific Colors for Course Page */
+.btn-edit {
+    border: 1px solid #800000;
+    color: #800000 !important;
 }
 
-a.btn-delete {
-    background-color: #cc0000;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 4px;
+.btn-delete {
+    border: 1px solid #800000;
+    color: #800000 !important;
+}
+
+/* Hover effects */
+.btn-edit:hover, .btn-delete:hover {
+    background-color: #990000;
+    color: white !important;
 }
 
 /* Role Labels */
@@ -499,14 +508,25 @@ svg {
     fill: none;
 }
 
-.logo .icon {
+.logo .icon .logo2{
     color: white;
     /* OR you can target the fill directly */
     fill: white; 
 }
 
-.logo svg {
+.logo svg, .logo2 svg {
     fill: white !important;
+}
+
+/* This targets only the SVG inside the logo div */
+.logo a svg {
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.logo2 a svg {
+    width: 45px !important;
+    height: 45px !important;
 }
 
 /* ===== GENERAL ===== */

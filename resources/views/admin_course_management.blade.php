@@ -11,7 +11,7 @@
         <header>
             <div class="logo">
                 <a href="{{ url('/admin/courses') }}" style="display: flex; align-items: center; text-decoration: none; color: white;">
-                    <svg width="24px" height="24px" viewBox="0 0 128 128" fill="white">
+                    <svg width="40px" height="40px" viewBox="0 0 128 128" fill="white">
                         <path d="M119.779,112.895H9.038c-2.952,0-5.85-2.966-5.85-5.988V95.067H124.82v12 C124.82,109.932,122.934,112.895,119.779,112.895z M7.194,99.072v7.834c0,0.815,1.086,1.983,1.844,1.983h110.741c0.594,0,1.037-0.962,1.037-1.822v-7.995H7.194zM124.783,99.143H3.179V28.936c0-2.865,2.343-5.196,5.223-5.196h11.562v4.005H8.402c-0.672,0-1.218,0.534-1.218,1.19v66.202h113.593V28.936c0-0.657-0.547-1.19-1.219-1.19h-11.523V23.74h11.523c2.881,0,5.225,2.331,5.225,5.196V99.143z"/>
                         <path d="M30.158,89.805H12.375V33.005h7.589v4.005h-3.584V85.8h13.778zM115.465,89.805H98.035V85.8h13.424V37.01h-3.424V33.005h7.43zM98.477,27.392v60.41h4.006V27.392zM29.67,87.802H25.665V0.322h50.784v4.005H29.67zM102.824,21.058H81.607V0h4.004V17.053h17.213zM39.889,23.749h27.309v4.005H39.889zM39.889,34.518h46.803v4.005H39.889zM39.889,45.287h46.803v4.005H39.889zM39.889,56.054h46.803v4.005H39.889zM39.889,66.825h46.803v4.005H39.889zM39.889,77.592h46.803v4.005H39.889z"/>
                     </svg>
@@ -79,12 +79,13 @@
                                 </td>
                                 <td>
                                     <div class="tooltip" style="display: inline-block;">
-                                        <a href="javascript:void(0)" onclick="openEditModal('{{ $course->course_id }}', '{{ $course->course_code }}', '{{ $course->course_name }}', '{{ $course->faculty_id }}')">Edit</a>
+                                        <a href="javascript:void(0)" class="btn-edit"
+                                        onclick="openEditModal('{{ $course->course_id }}', '{{ $course->course_code }}', '{{ $course->course_name }}', '{{ $course->faculty_id }}')">Edit</a>
                                         <span class="tooltiptext">Edit course details</span>
                                     </div> 
-                                    <span style="padding: 0 5px;">|</span>
+                                    <span style="padding: 0 5px;"></span>
                                     <div class="tooltip" style="display: inline-block;">
-                                        <a href="{{ url('/admin/courses/delete/'.$course->course_id) }}" 
+                                        <a href="{{ url('/admin/courses/delete/'.$course->course_id) }}" class="btn-delete" 
                                            onclick="return confirm('WARNING: This deletes ALL attendance and enrollment for this course. Continue?');">Delete</a>
                                         <span class="tooltiptext">Delete course</span>
                                     </div>
@@ -100,59 +101,73 @@
     </main>
 
     <div id="addCourseModal" class="modal">
-        <div class="modal-content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">Add New Course</h2>
             <span class="close" onclick="closeModal('addCourseModal')">&times;</span>
-            <h2>Add New Course</h2>
+        </div>
+        
+        <div class="modal-body">
             <form method="POST" action="{{ url('/admin/courses/add') }}">
                 @csrf
                 <div class="form-group">
-                    <label>Course Code:</label>
+                    <label>Course Code</label>
                     <input type="text" name="course_code" required placeholder="e.g. CS101">
                 </div>
                 <div class="form-group">
-                    <label>Course Name:</label>
+                    <label>Course Name</label>
                     <input type="text" name="course_name" required placeholder="e.g. Introduction to Programming">
                 </div>
                 <div class="form-group">
-                    <label>Assigned Faculty:</label>
-                    <select name="faculty_id" required>
-                        <option value="">-- Select Faculty --</option>
+                    <label>Assigned Faculty</label>
+                    <select name="faculty_id" required class="custom-select">
+                        <option value="" disabled selected hidden>-- Select Faculty --</option>
                         @foreach($faculty_members as $faculty)
-                            <option value="{{ $faculty->user_id }}">{{ $faculty->first_name }} {{ $faculty->last_name }}</option>
+                            <option value="{{ $faculty->user_id }}">
+                                {{ $faculty->first_name }} {{ $faculty->last_name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
-                <button type="submit" class="btn-primary">Create Course</button>
+                <button type="submit" class="btn-primary" style="margin-top: 10px; width: 100%;">Create Course</button>
             </form>
         </div>
     </div>
+</div>
 
-    <div id="editCourseModal" class="modal">
-        <div class="modal-content">
+<div id="editCourseModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">Edit Course Details</h2>
             <span class="close" onclick="closeModal('editCourseModal')">&times;</span>
-            <h2>Edit Course</h2>
+        </div>
+        
+        <div class="modal-body">
             <form id="editCourseForm" method="POST" action="">
                 @csrf
                 <div class="form-group">
-                    <label>Course Code:</label>
+                    <label>Course Code</label>
                     <input type="text" name="course_code" id="edit_course_code" required>
                 </div>
                 <div class="form-group">
-                    <label>Course Name:</label>
+                    <label>Course Name</label>
                     <input type="text" name="course_name" id="edit_course_name" required>
                 </div>
                 <div class="form-group">
-                    <label>Assigned Faculty:</label>
-                    <select name="faculty_id" id="edit_faculty_id" required>
+                    <label>Assigned Faculty</label>
+                    <select name="faculty_id" id="edit_faculty_id" required class="custom-select">
                         @foreach($faculty_members as $faculty)
-                            <option value="{{ $faculty->user_id }}">{{ $faculty->first_name }} {{ $faculty->last_name }}</option>
+                            <option value="{{ $faculty->user_id }}">
+                                {{ $faculty->first_name }} {{ $faculty->last_name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
-                <button type="submit" class="btn-primary">Save Changes</button>
+                <button type="submit" class="btn-primary" style="margin-top: 10px; width: 100%;">Save Changes</button>
             </form>
         </div>
     </div>
+</div>
 
     <script>
         function openAddModal() {

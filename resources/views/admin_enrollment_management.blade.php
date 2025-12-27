@@ -9,9 +9,9 @@
 <body>
     <div class="nav-bar">
         <header>
-            <div class="logo">
+            <div class="logo2">
                 <a href="{{ url('/admin/enrollment') }}" style="display: flex; align-items: center; text-decoration: none; color: white;">
-                    <svg width="30px" height="30px" viewBox="0 0 300 300" fill="currentColor">
+                    <svg viewBox="0 0 300 300" fill="currentColor">
                         <path d="M194.839,115.958l1.576,0.678c0.668,0.287,1.361,0.423,2.044,0.423c2.006,0,3.915-1.174,4.76-3.134c1.127-2.627-0.085-5.672-2.712-6.802l-1.578-0.678c-2.627-1.13-5.67,0.085-6.802,2.711C191,111.784,192.212,114.828,194.839,115.958z M240.331,157.468v-29.814c0-2.858-2.319-5.177-5.178-5.177h-88.727c-2.86,0-5.178,2.318-5.178,5.177c0,2.859,2.317,5.179,5.178,5.179h63.576l-63.576,27.333l-75.619-32.512l75.619-32.509l33.941,14.592c2.627,1.129,5.674-0.085,6.802-2.712c1.128-2.627-0.085-5.672-2.712-6.801L148.47,84.751c-1.305-0.561-2.784-0.561-4.09,0l-88.729,38.146c-1.9,0.817-3.133,2.688-3.133,4.756c0,2.07,1.232,3.941,3.133,4.758l88.729,38.146c0.652,0.279,1.349,0.42,2.045,0.42c0.695,0,1.392-0.141,2.045-0.42l48.833-20.996v35.826c-28.496,26.367-73.263,26.367-101.761,0l0.002-9.137c0-2.86-2.317-5.178-5.178-5.178l0,0c-2.857,0-5.176,2.317-5.176,5.176l-0.002,11.357c0,1.393,0.561,2.725,1.555,3.699c16.03,15.711,37.225,24.363,59.682,24.363c22.455,0,43.65-8.652,59.681-24.363c0.994-0.974,1.554-2.307,1.554-3.698l-0.002-42.497l22.318-9.595v21.952c-4.219,1.961-7.15,6.236-7.15,11.186c0,5.078,3.79,18.441,12.327,18.441c8.538,0,12.328-13.363,12.328-18.441C247.481,163.704,244.549,159.429,240.331,157.468z M235.153,175.34c-1.007-1.976-1.973-5.029-1.973-6.687c0-1.088,0.884-1.974,1.973-1.974c1.088,0,1.972,0.886,1.972,1.974C237.125,170.311,236.159,173.365,235.153,175.34zM90.369,165.68c2.858,0,5.176-2.317,5.176-5.177v-1.724c0-2.86-2.317-5.178-5.176-5.178c-2.859,0-5.178,2.317-5.178,5.178v1.724C85.191,163.363,87.509,165.68,90.369,165.68z"/>
                     </svg>
                 </a>
@@ -81,7 +81,7 @@
                                     <td>{{ $enrollment->enrollment_id }}</td>
                                     <td>{{ $enrollment->last_name }}, {{ $enrollment->first_name }} ({{ $enrollment->username }})</td>
                                     <td>
-                                        <a href="{{ url('/admin/enrollment/delete/'.$enrollment->enrollment_id) }}" 
+                                        <a class="btn-delete" href="{{ url('/admin/enrollment/delete/'.$enrollment->enrollment_id) }}" 
                                            onclick="return confirm('Remove student from course?');">
                                             Remove
                                         </a>
@@ -98,15 +98,19 @@
     </main>
 
     <div id="enrollModal" class="modal">
-        <div class="modal-content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">Enroll a New Student</h2>
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Enroll a New Student</h2>
+        </div>
+        
+        <div class="modal-body">
             <form method="POST" action="{{ url('/admin/enrollment/add') }}">
                 @csrf
                 <div class="form-group">
-                    <label for="student_id">Select Student:</label>
-                    <select name="student_id" required>
-                        <option value="">-- Select Student --</option>
+                    <label for="student_id">Select Student</label>
+                    <select name="student_id" id="student_id" required class="custom-select">
+                        <option value="" disabled selected hidden>-- Select Student --</option>
                         @foreach ($students as $student)
                             <option value="{{ $student->user_id }}">
                                 {{ $student->last_name }}, {{ $student->first_name }} ({{ $student->username }})
@@ -116,9 +120,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="course_id">Select Course:</label>
-                    <select name="course_id" required>
-                        <option value="">-- Select Course --</option>
+                    <label for="course_id">Select Course</label>
+                    <select name="course_id" id="course_id" required class="custom-select">
+                        <option value="" disabled selected hidden>-- Select Course --</option>
                         @foreach ($courses as $course)
                             <option value="{{ $course->course_id }}">
                                 {{ $course->course_code }} - {{ $course->course_name }}
@@ -127,11 +131,11 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn-primary">Enroll Student</button>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Enroll Student</button>
             </form>
         </div>
     </div>
-
+</div>
     <script>
         function openEnrollModal() {
             document.getElementById('enrollModal').style.display = "block";
