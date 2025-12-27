@@ -11,7 +11,7 @@
         <header>
             <div class="logo">
                 <a href="{{ url('/admin/users') }}" style="display: flex; align-items: center; text-decoration: none; color: white;">
-                    <svg viewBox="0 0 24 24" fill="currentColor" style="color: white; margin-right: 8px; width:30px; height:30px;">
+                    <svg viewBox="0 0 24 24" class="icon h-6 w-6" fill="currentColor" style="color: white; margin-right: 8px; width:30px; height:30px;">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.8 6-3.8 1.99 0 5.97 1.81 6 3.8-1.29 1.94-3.5 3.22-6 3.22z"/>
                     </svg>
                 </a>
@@ -81,9 +81,10 @@
                             <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <a href="javascript:void(0)" 
+                                <a href="javascript:void(0)" class="btn-edit"
                                    onclick="openEditModal('{{ $user->user_id }}', '{{ $user->username }}', '{{ $user->first_name }}', '{{ $user->last_name }}', '{{ $user->email }}', '{{ $user->role }}')">Edit</a> | 
-                                <a href="{{ url('/admin/users/delete/'.$user->user_id) }}" onclick="return confirm('Delete this user?');">Delete</a>
+                                <a href="{{ url('/admin/users/delete/'.$user->user_id) }}" class="btn-delete"
+                                onclick="return confirm('Delete this user?');">Delete</a>
                             </td>
                         </tr>
                     @empty
@@ -115,9 +116,10 @@
                             <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <a href="javascript:void(0)" 
+                                <a href="javascript:void(0)" class="btn-edit"
                                    onclick="openEditModal('{{ $user->user_id }}', '{{ $user->username }}', '{{ $user->first_name }}', '{{ $user->last_name }}', '{{ $user->email }}', '{{ $user->role }}')">Edit</a> | 
-                                <a href="{{ url('/admin/users/delete/'.$user->user_id) }}" onclick="return confirm('Delete this user?');">Delete</a>
+                                <a href="{{ url('/admin/users/delete/'.$user->user_id) }}" class="btn-delete"
+                                    onclick="return confirm('Delete this user?');">Delete</a>
                             </td>
                         </tr>
                     @empty

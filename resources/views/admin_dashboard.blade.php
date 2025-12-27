@@ -10,7 +10,7 @@
     <div class="nav-bar">
         <header>
             <div class="logo">
-                <a href="{{ url('/admin_dashboard') }}" style="color: white;">
+                <a href="{{ url('/admin_dashboard') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon h-6 w-6" viewBox="0 0 20 20" fill="currentColor" style="width: 24px; height: 24px; margin-right: 8px;">
                         <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                     </svg>
@@ -44,8 +44,8 @@
         <div class="main-card">
             <section class="statistics-dashboard">
                 <h1>Welcome, Admin {{ $first_name }}</h1>
-                <hr><br>
-                <h2 style="color: #555; font-weight: 400;">System Statistics Overview</h2>
+                <br><hr><br>
+                <h2 style="color: #555; font-weight: 400;">System Statistics Overview</h2><br>
                 
                 <div class="stats-grid">
                     <div class="stat-card courses">

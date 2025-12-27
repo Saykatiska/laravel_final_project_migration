@@ -346,10 +346,10 @@ h1, h2 {
 
 a { 
     text-decoration: none;
-    color: #800000;
+    color: white;
 }
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
     transform: scale(1.1);
 }
 
@@ -369,7 +369,6 @@ a.btn-primary {
 .btn-secondary {
     display: inline-block;
     padding: 10px 15px;
-    background-color: #C53333;
     color: white;
     border-radius: 5px;
 }
@@ -380,22 +379,49 @@ a.btn-primary {
 }
 
 /* Table Styling */
+
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
+
 th, td {
     border: 1px solid #ddd;
     padding: 12px;
-    text-align: left;
+    /* CHANGE THIS LINE */
+    text-align: center; 
 }
+
 th {
     background-color: #800000;
     color: white;
 }
 tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+td a.btn-edit, td a.btn-delete {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+a.btn-edit {
+    background-color: #a00000;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+a.btn-edit:hover {
+    background-color: #b30000;
+}
+
+a.btn-delete {
+    background-color: #cc0000;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
 }
 
 /* Role Labels */
@@ -473,6 +499,16 @@ svg {
     fill: none;
 }
 
+.logo .icon {
+    color: white;
+    /* OR you can target the fill directly */
+    fill: white; 
+}
+
+.logo svg {
+    fill: white !important;
+}
+
 /* ===== GENERAL ===== */
 body {
   margin: 0;
@@ -482,26 +518,26 @@ body {
 }
 
 /* ===== HEADER ===== */
+/* app.css */
+
 .nav-bar {
   background-color: #800000;
   color: white;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   height: 64px;
   display: flex;
-  align-items: center;
+  align-items: center; /* This centers the header vertically */
 }
+
 header {
-  max-width: 100%; 
-  margin-left: 10px;
-  margin-right: 10px;
-  padding-left: 1rem;
-  padding-right: 1rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  height: 100%;
+  align-items: center; /* This centers the logo and nav links vertically */
+  padding: 0 2rem;
 }
+
+
 
 .logo {
     display: flex;
@@ -520,6 +556,7 @@ header {
   margin: 0;
   padding: 0;
   display: flex;
+  align-items: center; /* Ensures text and icons align on the same baseline */
   gap: 15px;
 }
 
