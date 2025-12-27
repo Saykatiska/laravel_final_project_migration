@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Faculty | Home</title>
-    <link rel="stylesheet" href="{{ asset('css/style2.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/faculty-style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/core.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
 </head>
 <body>
     <div class="nav-bar">
@@ -54,9 +54,21 @@
         </aside>
 
         <main class="main">
+            @if(session('success_message'))
+                <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #c3e6cb;">
+                    {{ session('success_message') }}
+                </div>
+            @endif
+
+            @if(session('error_message'))
+                <div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #f5c6cb;">
+                    {{ session('error_message') }}
+                </div>
+            @endif
+
             <section class="attendance-table">
                 <h3>Take Attendance ({{ $displayCourse->course_code ?? 'N/A' }})</h3>
-                <form id="attendanceForm" action="{{ url('/faculty/save-attendance') }}" method="POST">
+                <form id="attendanceForm" action="{{ url('/faculty/save-attendance?course_code=' . ($displayCourse->course_code ?? '')) }}" method="POST">
                     @csrf 
                     <input type="hidden" name="course_id" value="{{ $displayCourse->course_id ?? '' }}">
                     <table id="attendanceTable">
@@ -79,7 +91,9 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <button type="submit" class="update-btn">Submit Attendance</button>
+                    @if($displayCourse)
+                        <button type="submit" class="update-btn">Submit Attendance</button>
+                    @endif
                 </form>
             </section>
             

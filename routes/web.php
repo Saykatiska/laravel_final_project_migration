@@ -22,14 +22,34 @@ Route::post('/admin/settings', [AdminController::class, 'updateSettings']);
 
 // User Management
 Route::get('/admin/users', [AdminController::class, 'userManagement']);
+// Add User Routes
+Route::get('/admin/users/add', [AdminController::class, 'createUser']);
+Route::post('/admin/users/add', [AdminController::class, 'storeUser']);
+// Edit User Routes
+Route::get('/admin/users/edit/{id}', [AdminController::class, 'editUser']);
+Route::post('/admin/users/edit/{id}', [AdminController::class, 'updateUser']);
+// User Deletion Route
+Route::get('/admin/users/delete/{id}', [AdminController::class, 'deleteUser']);
 
 // Enrollment Management
 Route::get('/admin/enrollment', [AdminController::class, 'enrollmentManagement']);
 Route::get('/admin/enrollment/delete/{id}', [AdminController::class, 'deleteEnrollment']);
+Route::post('/admin/enrollment/add', [AdminController::class, 'storeEnrollment']);
 
 // Course Management Route
 Route::get('/admin/courses', [AdminController::class, 'courseManagement']);
+Route::post('/admin/courses/add', [AdminController::class, 'storeCourse']);
+Route::post('/admin/courses/edit/{id}', [AdminController::class, 'updateCourse']);
+Route::get('/admin/courses/delete/{id}', [AdminController::class, 'deleteCourse']);
 
 Route::get('/student/student_dashboard', [StudentController::class, 'dashboard']);
+// Student Profile Routes
+Route::get('/student/profile', [StudentController::class, 'editProfile']);
+Route::post('/student/profile', [StudentController::class, 'updateProfile']);
 
 Route::get('/faculty/faculty_dashboard', [FacultyController::class, 'dashboard']);
+
+// Faculty Profile Routes
+Route::get('/faculty/profile', [FacultyController::class, 'editProfile']);
+Route::post('/faculty/profile', [FacultyController::class, 'updateProfile']);
+Route::post('/faculty/save-attendance', [FacultyController::class, 'saveAttendance']);

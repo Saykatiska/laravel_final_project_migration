@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin | Course Management</title>
-    <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin-course-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/core.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <div class="nav-bar">
@@ -24,9 +24,8 @@
                     <li class="active-nav"><a href="{{ url('/admin/courses') }}">Courses</a></li>
                     <li><a href="{{ url('/admin/enrollment') }}">Enrollment</a></li>
                     <li><a href="{{ url('/logout') }}">Logout</a></li>
-                    <li><a href="{{ url('/admin/settings') }}" class="btn-secondary">Settings</a></li>
                     <li>
-                    <a href="{{ url('/admin_settings') }}" class="btn-secondary">
+                        <a href="{{ url('/admin/settings') }}" class="btn-secondary">
                     <svg width="15px" height="15px" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12" r="3" stroke="#ffffff" stroke-width="2"/>
                     <path 
@@ -36,7 +35,7 @@
                         stroke-linecap="round"/>
                     </svg>
                     </a>
-                </li>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -47,12 +46,16 @@
             <div class="table-header-controls">
                 <h1>Existing Courses</h1>
                 <nav class="sub-menu-inline">
-                    <a href="{{ url('/admin/courses/add') }}" class="btn-primary">Add New Course</a>
+                    <a href="javascript:void(0)" class="btn-primary" onclick="openAddModal()">Add New Course</a>
                 </nav>
             </div>
             
             @if(session('success_message'))
                 <div class="message success">{{ session('success_message') }}</div>
+            @endif
+
+            @if(session('error_message'))
+                <div class="message error">{{ session('error_message') }}</div>
             @endif
             
             <hr>
@@ -76,7 +79,7 @@
                                 </td>
                                 <td>
                                     <div class="tooltip" style="display: inline-block;">
-                                        <a href="{{ url('/admin/courses/edit/'.$course->course_id) }}">Edit</a>
+                                        <a href="javascript:void(0)" onclick="openEditModal('{{ $course->course_id }}', '{{ $course->course_code }}', '{{ $course->course_name }}', '{{ $course->faculty_id }}')">Edit</a>
                                         <span class="tooltiptext">Edit course details</span>
                                     </div> 
                                     <span style="padding: 0 5px;">|</span>
@@ -95,5 +98,88 @@
             </div>
         </section>
     </main>
+
+    <div id="addCourseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addCourseModal')">&times;</span>
+            <h2>Add New Course</h2>
+            <form method="POST" action="{{ url('/admin/courses/add') }}">
+                @csrf
+                <div class="form-group">
+                    <label>Course Code:</label>
+                    <input type="text" name="course_code" required placeholder="e.g. CS101">
+                </div>
+                <div class="form-group">
+                    <label>Course Name:</label>
+                    <input type="text" name="course_name" required placeholder="e.g. Introduction to Programming">
+                </div>
+                <div class="form-group">
+                    <label>Assigned Faculty:</label>
+                    <select name="faculty_id" required>
+                        <option value="">-- Select Faculty --</option>
+                        @foreach($faculty_members as $faculty)
+                            <option value="{{ $faculty->user_id }}">{{ $faculty->first_name }} {{ $faculty->last_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Create Course</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="editCourseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editCourseModal')">&times;</span>
+            <h2>Edit Course</h2>
+            <form id="editCourseForm" method="POST" action="">
+                @csrf
+                <div class="form-group">
+                    <label>Course Code:</label>
+                    <input type="text" name="course_code" id="edit_course_code" required>
+                </div>
+                <div class="form-group">
+                    <label>Course Name:</label>
+                    <input type="text" name="course_name" id="edit_course_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Assigned Faculty:</label>
+                    <select name="faculty_id" id="edit_faculty_id" required>
+                        @foreach($faculty_members as $faculty)
+                            <option value="{{ $faculty->user_id }}">{{ $faculty->first_name }} {{ $faculty->last_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openAddModal() {
+            document.getElementById('addCourseModal').style.display = "block";
+        }
+
+        function openEditModal(id, code, name, facultyId) {
+            const form = document.getElementById('editCourseForm');
+            form.action = "{{ url('/admin/courses/edit') }}/" + id;
+            
+            document.getElementById('edit_course_code').value = code;
+            document.getElementById('edit_course_name').value = name;
+            document.getElementById('edit_faculty_id').value = facultyId;
+            
+            document.getElementById('editCourseModal').style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        // Close when clicking outside the modal box
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>

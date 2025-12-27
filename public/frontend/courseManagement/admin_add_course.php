@@ -87,8 +87,8 @@ close_db_connection($conn);
 <head>
     <meta charset="UTF-8">
     <title>Admin | Add New Course</title>
-    <link rel="stylesheet" href="../style2.css">
-    <link rel="stylesheet" href="admin-course-style.css">
+    <link rel="stylesheet" href="../../css/core.css">
+    <link rel="stylesheet" href="../../css/app.css">
     <style>
         header {
             display: flex;

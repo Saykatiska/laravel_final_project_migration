@@ -49,4 +49,80 @@ class FacultyController extends Controller
             'selectedCourseCode' => $selectedCourseCode
         ]);
     }
+        // Add these methods to FacultyController.php
+
+    public function editProfile()
+    {
+        $facultyId = session('user_id');
+        
+        // Fetch faculty details
+        $faculty = DB::table('users')->where('user_id', $facultyId)->first();
+
+        return view('faculty_edit_profile', compact('faculty'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $facultyId = session('user_id');
+
+        // 1. Validation (Ensures uniqueness but ignores the current user's ID)
+        $validated = $request->validate([
+            'username'   => 'required|string|max:255|unique:users,username,' . $facultyId . ',user_id',
+            'first_name' => 'required|string|max:255',
+            'last_name'  => 'required|string|max:255',
+            'email'      => 'required|email|unique:users,email,' . $facultyId . ',user_id',
+        ]);
+
+        // 2. Update Database
+        DB::table('users')->where('user_id', $facultyId)->update($validated);
+
+        // 3. Update Session data (Optional, if you use these elsewhere)
+        session([
+            'username'   => $validated['username'],
+            'first_name' => $validated['first_name'],
+        ]);
+
+        return redirect('/faculty/profile')->with('success_message', 'Profile successfully updated!');
+    }
+
+    // Add this to FacultyController.php
+
+    public function saveAttendance(Request $request)
+    {
+        $facultyId = session('user_id');
+        $courseId = $request->input('course_id');
+        $courseCode = $request->query('course_code', 'N/A');
+
+        if (!$courseId) {
+            return back()->with('error_message', 'Error: Valid course ID is required.');
+        }
+
+        try {
+            DB::transaction(function () use ($request, $courseId, $facultyId) {
+                $attendanceDate = now()->toDateString();
+                $data = $request->all();
+
+                foreach ($data as $key => $status) {
+                    // Check if the input key matches the 'student_ID' pattern
+                    if (strpos($key, 'student_') === 0) {
+                        $studentId = str_replace('student_', '', $key);
+
+                        DB::table('attendance_records')->insert([
+                            'student_id'      => $studentId,
+                            'course_id'       => $courseId,
+                            'attendance_date' => $attendanceDate,
+                            'status'          => $status,
+                            'recorded_by'     => $facultyId,
+                        ]);
+                    }
+                }
+            });
+
+            return redirect('/faculty/faculty_dashboard?course_code=' . $courseCode)
+                ->with('success_message', 'Attendance recorded successfully!');
+
+        } catch (\Exception $e) {
+            return back()->with('error_message', 'Failed to record attendance: ' . $e->getMessage());
+        }
+    }
 }

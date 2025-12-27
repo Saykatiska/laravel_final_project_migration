@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin | Enrollment Management</title>
-    <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin-enrollment-style.css') }}">
-</head>
+    <link rel="stylesheet" href="{{ asset('css/core.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    </head>
 <body>
     <div class="nav-bar">
         <header>
@@ -24,7 +24,7 @@
                     <li class="active-nav"><a href="{{ url('/admin/enrollment') }}">Enrollment</a></li>
                     <li><a href="{{ url('/logout') }}">Logout</a></li>
                     <li>
-                    <a href="{{ url('/admin_settings') }}" class="btn-secondary">
+                        <a href="{{ url('/admin/settings') }}" class="btn-secondary">
                     <svg width="15px" height="15px" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12" r="3" stroke="#ffffff" stroke-width="2"/>
                     <path 
@@ -34,7 +34,7 @@
                         stroke-linecap="round"/>
                     </svg>
                     </a>
-                </li>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -45,12 +45,16 @@
             <div class="table-header-controls">
                 <h1>Enrollment Management</h1>
                 <nav class="sub-menu-inline">
-                    <a href="{{ url('/admin/enrollment/add') }}" class="btn-primary">Enroll New Student</a>
+                    <a href="javascript:void(0)" class="btn-primary" onclick="openEnrollModal()">Enroll New Student</a>
                 </nav>
             </div>
             
             @if(session('success_message'))
                 <div class="message success">{{ session('success_message') }}</div>
+            @endif
+
+            @if(session('error_message'))
+                <div class="message error">{{ session('error_message') }}</div>
             @endif
 
             <h2>Total Current Enrollments ({{ $total_count }})</h2>
@@ -92,5 +96,57 @@
             @endforelse
         </section>
     </main>
+
+    <div id="enrollModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Enroll a New Student</h2>
+            <form method="POST" action="{{ url('/admin/enrollment/add') }}">
+                @csrf
+                <div class="form-group">
+                    <label for="student_id">Select Student:</label>
+                    <select name="student_id" required>
+                        <option value="">-- Select Student --</option>
+                        @foreach ($students as $student)
+                            <option value="{{ $student->user_id }}">
+                                {{ $student->last_name }}, {{ $student->first_name }} ({{ $student->username }})
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="course_id">Select Course:</label>
+                    <select name="course_id" required>
+                        <option value="">-- Select Course --</option>
+                        @foreach ($courses as $course)
+                            <option value="{{ $course->course_id }}">
+                                {{ $course->course_code }} - {{ $course->course_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">Enroll Student</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openEnrollModal() {
+            document.getElementById('enrollModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('enrollModal').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById('enrollModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>

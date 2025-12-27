@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard | Statistics</title>
-    <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin-dashboard-styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/core.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <div class="nav-bar">
@@ -24,7 +24,7 @@
                     <li><a href="{{ url('/admin/enrollment') }}">Enrollment</a></li>
                     <li><a href="{{ url('/logout') }}">Logout</a></li>
                     <li>
-                    <a href="{{ url('/admin_settings') }}" class="btn-secondary">
+                    <a href="{{ url('/admin/settings') }}" class="btn-secondary">
                     <svg width="15px" height="15px" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12" r="3" stroke="#ffffff" stroke-width="2"/>
                     <path 

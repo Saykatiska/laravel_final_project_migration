@@ -87,9 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Admin | Add New User</title>
-    <link rel="stylesheet" href="../style.css"> 
-    <link rel="stylesheet" href="../style2.css">
-    <link rel="stylesheet" href="admin-user-style.css">
+    <link rel="stylesheet" href="../../css/core.css">
+    <link rel="stylesheet" href="../../css/app.css">
 
 </head>
 <body>

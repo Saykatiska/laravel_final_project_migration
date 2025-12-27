@@ -1,0 +1,890 @@
+.settings-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.settings-group {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+.settings-group h2 {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+.settings-group select, .settings-group button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+.message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid;
+}
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+.message-box {
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 1200px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.message-box.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message-box.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.user-page-controls {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 100%;
+    margin: 30px auto 30px auto; 
+    padding: 0 10px 10px 10px;
+}
+
+.class-item {
+    padding: 8px 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    background-color: #900000;
+    color: white;
+    transition: background 0.3s;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    display: block;
+}
+.class-link {
+    text-decoration: none;
+    color: inherit;
+}
+.class-item:hover {
+    background-color: #a00000;
+}
+.update-btn {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+.update-btn:hover {
+    background-color: #990000;
+}
+
+.attendance-table label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+.attendance-table input[type="text"],
+.attendance-table input[type="email"] {
+    width: 90%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.update-btn {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+.update-btn:hover {
+    background-color: #a00000;
+}
+.success-message {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cd;
+    border-radius: 5px;
+}
+.error-message {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+}
+
+.login-container {
+    width: 350px;
+    margin: 100px auto;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.login-container h1 {
+    text-align: center;
+    color: #800000;
+    margin-bottom: 25px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* LEFT SECTION */
+.left-section {
+  position: relative;
+  width: 65%;
+  background: url("../frontend/pup-bg.jpg") center/cover no-repeat;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 0, 0, 0.85);
+  z-index: 0;
+}
+
+/* CONTENT ON LEFT SIDE */
+.text-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px;
+}
+
+.text-content h3 {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.text-content p {
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+/* CENTERED HELLO WELCOME */
+.welcome-text {
+  margin-top: 250px;
+}
+
+.welcome-text h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* DEVELOPERS SECTION */
+.developers {
+  position: relative;
+  z-index: 2;
+  padding: 0 80px 50px 80px;
+  font-size: 13px;
+}
+
+.developers p {
+  margin-bottom: 8px;
+}
+
+.roles {
+  display: flex;
+  justify-content: flex-start;
+  gap: 50px;
+}
+
+.roles div p:first-child {
+  font-weight: 600;
+}
+
+/* RIGHT SECTION */
+.right-section {
+  width: 35%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  width: 75%;
+  max-width: 350px;
+}
+
+.login-box h2 {
+  color: #800000;
+  font-weight: 700;
+}
+
+.login-box .desc {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 13px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 4px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  background-color: #800000;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #660000;
+}
+
+
+.keep-logged {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+ .keep-logged input {
+  margin-right: 5px; 
+}
+
+.keep-logged label {
+  font-size: 12px;
+  color: #555; 
+}
+
+.message_error{
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+/* ADMIN DASHBOARD STYLING */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1, h2 {
+    color: #333;
+}
+
+a { 
+    text-decoration: none;
+    color: #800000;
+}
+a:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+}
+
+a.btn-primary {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #800000;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    background-color: #990000;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #C53333;
+    color: white;
+    border-radius: 5px;
+}
+
+.back-button:hover {
+    stroke: #ff6600 !important;
+    transform: scale(1.5);
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+th {
+    background-color: #800000;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Role Labels */
+.role-faculty { color: darkorange; font-weight: bold; }
+.role-student { color: darkgreen; font-weight: bold; }
+
+/* Message Styling */
+.message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid;
+}
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+/* TOOLTIP */
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+}
+
+/* ===== GENERAL ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f8f8;
+  color: #2e2e2e;
+}
+
+/* ===== HEADER ===== */
+.nav-bar {
+  background-color: #800000;
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+header {
+  max-width: 100%; 
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo .icon {
+    height: 1.5rem; 
+    width: 1.5rem;
+}
+
+/* ===== TOP-RIGHT MENU ===== */
+.top-right-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.top-right-menu li {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+  align-items: center;
+
+}
+
+.top-right-menu li:hover {
+  background-color: #a00000;
+}
+
+.top-right-menu li.active-nav {
+    background-color: transparent !important; 
+}
+
+.top-right-menu li.active-nav a {
+    color: white !important; 
+    font-weight: 700; 
+    
+    border-bottom: 1px solid white;
+    box-shadow: 0 2px 0 0 white;
+    padding-bottom: 3px; padding-left: 3px; padding-right: 3px; 
+    margin-bottom: -4px; 
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* ===== BREADCRUMB TEXT ===== */
+.breadcrumb-text {
+    font-size: 0.800rem; 
+    color: #6b7280; 
+    margin-bottom: 1rem; 
+}
+
+
+.breadcrumb-link:hover {
+    text-decoration: underline;
+}
+
+/* --- Main Content Layout --- */
+.main-content-wrapper {
+    width: 60vw;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5rem;
+}
+
+.main-card {
+    background-color: white;
+    padding: 1.5rem; 
+    border-radius: 0.75rem; 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+}
+
+.view-section {
+    padding-top: 1rem;
+}
+/* ===== LAYOUT ===== */
+.container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* ===== LEFT SIDEBAR ===== */
+.details {
+  background: #800000;
+  border-radius: 10px;
+  padding: 20px;
+  border-left: 5px solid #800000;
+  color: #f8f8f8;
+}
+
+.details h3 {
+  margin-top: 0;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  padding: 0;
+}
+
+/* ===== ATTENDANCE SECTION ===== */
+.attendance-insights {
+  text-align: center;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.circle {
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  border-radius: 50%;
+  margin: 20px auto;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
+  background-color: #800000;
+}
+
+/* ===== CLASS LIST TABLE ===== */
+.attendance-table {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.attendance-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.attendance-table th {
+  background-color: #800000;
+  color: white;
+  padding: 10px;
+}
+
+.attendance-table td {
+  border-bottom: 1px solid #e3e6eb;
+  padding: 10px;
+  text-align: center;
+}
+
+.attendance-table input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* ===== BUTTONS ===== */
+.update-btn {
+  background-color: #800000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95em;
+  margin-top: 15px;
+  transition: background 0.3s;
+}
+
+.update-btn:hover {
+  background-color: #a00000;
+}
+
+/* ===== OPTIONAL FACULTY FORM (if needed) ===== */
+.faculty-form {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.faculty-form label {
+  font-weight: 600;
+  color: #800000;
+}
+
+.faculty-form input,
+.faculty-form select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.faculty-form input:focus,
+.faculty-form select:focus {
+  outline: none;
+  border-color: #800000;
+}
+.progress-bar-faculty, .progress-bar-student {
+            box-sizing: border-box; 
+        }
+
+.statistics-dashboard {
+    max-width: 1200px; 
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto; 
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    padding: 0; 
+}
+.stat-card {
+    background-color: #ffffff;
+    border-left: 5px solid;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; 
+    flex-direction: column;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.stat-card h3 {
+    margin-top: 0;
+    color: #555;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+.stat-card p {
+    font-size: 2.8em;
+    font-weight: bold;
+    margin: 5px 0 0;
+}
+.courses { border-left-color: #800000; }
+.courses p { color: #800000; }
+.enrolled { border-left-color: #800000; }
+.enrolled p { color: #800000; }
+.users-summary { border-left-color: #800000; }
+.users-summary p { color: #800000; }
+
+/*TOTAL ENROLLMENT RECORDS CARD STYLES*/
+.center-card {
+    grid-column: 1 / -1; 
+    text-align: center;
+    background-color: #ffffff;
+    border-left: 4px solid #800000;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+}
+.center-card h3 {
+    margin: 0 0 10px 0;
+    color: #800000;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+.center-card p {
+    font-size: 4em; 
+    font-weight: bold;
+    color: #800000;
+    margin: 0;
+}
+
+.user-distribution-card {
+    grid-column: 1 / -1; 
+    background-color: #f8f9fa;
+    border-left: 5px solid #800000;
+    padding: 30px;
+}
+.progress-bar-container {
+    width: 100%;
+    height: 30px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    display: flex;
+    overflow: hidden;
+    margin: 15px 0;
+}
+.progress-bar-faculty {
+    height: 100%;
+    background-color: #ffc107; 
+    float: left;
+    text-align: right;
+    line-height: 30px;
+    color: #333;
+    font-weight: bold;
+    padding-right: 10px;
+    transition: width 1s ease-in-out;
+}
+.progress-bar-student {
+    height: 100%;
+    background-color: #800000; 
+    float: right;
+    text-align: left;
+    line-height: 30px;
+    color: white;
+    font-weight: bold;
+    padding-left: 10px;
+    transition: width 1s ease-in-out;
+}
+.legend {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    font-weight: 500;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+}
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 8px;
+}
+
+.sub-menu-inline {
+    white-space: nowrap;
+}
+
+.attendance-table table {
+        margin-top: 20px;
+}
+
+.current-page a {
+    font-weight: bold;
+    text-decoration: underline !important;
+}
+
+.back-button:hover {
+    stroke: #ff6600 !important;
+    transform: scale(1.5);
+}
+
+.enrollment-content-area {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.table-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.enrollment-content-area h3 {
+    margin-top: 30px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ddd;
+    color: #333;
+}
+
+/* Responsive adjustment: force single column on small screens */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .center-card, .user-distribution-card {
+        grid-column: auto; 
+    }
+}

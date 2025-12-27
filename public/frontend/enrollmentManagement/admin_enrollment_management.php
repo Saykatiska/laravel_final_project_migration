@@ -98,8 +98,8 @@ if (isset($conn)) {
 <head>
     <meta charset="UTF-8">
     <title>Admin | Enrollment Management</title>
-    <link rel="stylesheet" href="../style2.css">
-    <link rel="stylesheet" href="admin-enrollment-style.css">
+    <link rel="stylesheet" href="../../css/core.css">
+    <link rel="stylesheet" href="../../css/app.css">
 </head>
 <body>
     <div class="nav-bar">

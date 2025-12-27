@@ -70,8 +70,8 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Faculty | Edit Profile</title>
-    <link rel="stylesheet" href="../style2.css">
-    <link rel="stylesheet" href="faculty-style.css" />
+    <link rel="stylesheet" href="../../css/core.css" />
+    <link rel="stylesheet" href="../../css/app.css" />
 
 </head>
 <body>

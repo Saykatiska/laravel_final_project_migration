@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin | User Management</title>
-    <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin-user-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/core.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <div class="nav-bar">
@@ -24,7 +24,7 @@
                     <li><a href="{{ url('/admin/enrollment') }}">Enrollment</a></li>
                     <li><a href="{{ url('/logout') }}">Logout</a></li>
                     <li>
-                    <a href="{{ url('/admin_settings') }}" class="btn-secondary">
+                        <a href="{{ url('/admin/settings') }}" class="btn-secondary">
                     <svg width="15px" height="15px" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12" r="3" stroke="#ffffff" stroke-width="2"/>
                     <path 
@@ -34,7 +34,7 @@
                         stroke-linecap="round"/>
                     </svg>
                     </a>
-                </li>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -43,13 +43,19 @@
     @if(session('success_message'))
         <div class="message-box success">{{ session('success_message') }}</div>
     @endif
+
+    @if(session('error_message'))
+        <div class="message-box error" style="background-color: #f8d7da; color: #721c24; padding: 10px; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 15px;">
+            {{ session('error_message') }}
+        </div>
+    @endif
     
     <main class="main">
         <section class="attendance-table">
             <div class="table-header-controls" style="margin-bottom: 0;">
                 <h1 style="padding: 0 10px 10px 10px;">User Management</h1>
                 <nav class="sub-menu-inline">
-                    <a href="{{ url('/admin/users/add') }}" class="btn-primary">Add New User</a>
+                    <a href="javascript:void(0)" class="btn-primary" onclick="openModal()">Add New User</a>
                 </nav>
             </div>
             <hr>
@@ -75,7 +81,8 @@
                             <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <a href="{{ url('/admin/users/edit/'.$user->user_id) }}">Edit</a> | 
+                                <a href="javascript:void(0)" 
+                                   onclick="openEditModal('{{ $user->user_id }}', '{{ $user->username }}', '{{ $user->first_name }}', '{{ $user->last_name }}', '{{ $user->email }}', '{{ $user->role }}')">Edit</a> | 
                                 <a href="{{ url('/admin/users/delete/'.$user->user_id) }}" onclick="return confirm('Delete this user?');">Delete</a>
                             </td>
                         </tr>
@@ -108,7 +115,8 @@
                             <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <a href="{{ url('/admin/users/edit/'.$user->user_id) }}">Edit</a> | 
+                                <a href="javascript:void(0)" 
+                                   onclick="openEditModal('{{ $user->user_id }}', '{{ $user->username }}', '{{ $user->first_name }}', '{{ $user->last_name }}', '{{ $user->email }}', '{{ $user->role }}')">Edit</a> | 
                                 <a href="{{ url('/admin/users/delete/'.$user->user_id) }}" onclick="return confirm('Delete this user?');">Delete</a>
                             </td>
                         </tr>
@@ -119,5 +127,115 @@
             </table>
         </section>
     </main>
+
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Add New User</h2>
+            <form method="POST" action="{{ url('/admin/users/add') }}">
+                @csrf
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label>Role:</label>
+                    <select name="role" required>
+                        <option value="Faculty">Faculty</option>
+                        <option value="Student">Student</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>First Name:</label>
+                    <input type="text" name="first_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name:</label>
+                    <input type="text" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" name="email" required>
+                </div>
+                <button type="submit" class="btn-primary">Save User</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="editUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2>Edit User</h2>
+            <form id="editUserForm" method="POST" action="">
+                @csrf
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" name="username" id="edit_username" required>
+                </div>
+                <div class="form-group">
+                    <label>New Password (Optional):</label>
+                    <input type="password" name="password" placeholder="Leave blank to keep current">
+                </div>
+                <div class="form-group">
+                    <label>Role:</label>
+                    <select name="role" id="edit_role" required>
+                        <option value="Faculty">Faculty</option>
+                        <option value="Student">Student</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>First Name:</label>
+                    <input type="text" name="first_name" id="edit_first_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name:</label>
+                    <input type="text" name="last_name" id="edit_last_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" name="email" id="edit_email" required>
+                </div>
+                <button type="submit" class="btn-primary">Update Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById("addUserModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("addUserModal").style.display = "none";
+        }
+
+        function openEditModal(id, username, firstName, lastName, email, role) {
+            const form = document.getElementById('editUserForm');
+            form.action = "{{ url('/admin/users/edit') }}/" + id;
+
+            document.getElementById('edit_username').value = username;
+            document.getElementById('edit_first_name').value = firstName;
+            document.getElementById('edit_last_name').value = lastName;
+            document.getElementById('edit_email').value = email;
+            document.getElementById('edit_role').value = role;
+
+            document.getElementById("editUserModal").style.display = "block";
+        }
+
+        function closeEditModal() {
+            document.getElementById("editUserModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            let addModal = document.getElementById("addUserModal");
+            let editModal = document.getElementById("editUserModal");
+            if (event.target == addModal) addModal.style.display = "none";
+            if (event.target == editModal) editModal.style.display = "none";
+        }
+    </script>
 </body>
 </html>
