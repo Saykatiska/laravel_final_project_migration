@@ -55,15 +55,15 @@
         <div class="message-box error">{{ session('error_message') }}</div>
     @endif
     
-    <main class="main">
-        <section class="attendance-table">
-            <div class="table-header-controls">
+    <main class="admin-page-container">
+        <section>
+            <div class="user-management-header">
                 <h1 style="padding: 0 10px 10px 0px;">User Management</h1>
                 <nav class="sub-menu-inline">
                     <a href="javascript:void(0)" class="btn-primary" onclick="openModal()">Add New User</a>
                 </nav>
             </div>
-            <hr><br>
+            <hr><br><br>
 
             <div class="table-header-controls"><h2>Faculty Members</h2></div>
             <table>

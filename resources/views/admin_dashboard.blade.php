@@ -40,7 +40,7 @@
         </header>
     </div>
 
-    <main class="main-content-wrapper">
+    <main class="admin-page-container">
         <div class="main-card">
             <section class="statistics-dashboard">
                 <h1>Welcome, Admin {{ $first_name }}</h1>

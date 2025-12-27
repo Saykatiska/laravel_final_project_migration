@@ -1,3 +1,21 @@
+/* Standardized Content Container */
+.admin-page-container {
+    width: 90%;            /* Standard width for smaller screens */
+    max-width: 1100px;     /* The "locked" width for all main cards */
+    margin: 30px auto;     /* Centering the card */
+    padding: 40px 50px;
+    background: white;
+    border-radius: 12px;   /* Consistent rounded corners */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    min-height: 400px;     /* Optional: prevents page jumping */
+}
+
+.user-management-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .settings-container {
     max-width: 800px;
     margin: 20px auto;
@@ -622,22 +640,6 @@ header {
     text-decoration: underline;
 }
 
-/* --- Main Content Layout --- */
-.main-content-wrapper {
-    width: 60vw;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1.5rem;
-}
-
-.main-card {
-    background-color: white;
-    padding: 1.5rem; 
-    border-radius: 0.75rem; 
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
-}
-
 .view-section {
     padding-top: 1rem;
 }
@@ -661,11 +663,6 @@ header {
 
 .details h3 {
   margin-top: 0;
-}
-
-/* ===== MAIN CONTENT ===== */
-.main {
-  padding: 0;
 }
 
 /* ===== ATTENDANCE SECTION ===== */
@@ -915,14 +912,6 @@ header {
     transform: scale(1.5);
 }
 
-.enrollment-content-area {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
 .table-header-controls {
     display: flex;
     justify-content: space-between;

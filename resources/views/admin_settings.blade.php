@@ -40,9 +40,9 @@
         </header>
     </div>
     
-    <main class="main">
-        <section class="settings-container">
-            <h1>System Settings</h1>
+    <main class="admin-page-container">
+        <section>
+            <h1>System Settings</h1><br>
             
             @if(session('success_message'))
                 <div class="message success">

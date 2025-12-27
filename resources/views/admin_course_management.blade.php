@@ -41,14 +41,14 @@
         </header>
     </div>
     
-    <main class="main">
-        <section class="main-content-area">
-            <div class="table-header-controls">
+    <main class="admin-page-container">
+        <section>
+            <div class="user-management-header">
                 <h1>Existing Courses</h1>
                 <nav class="sub-menu-inline">
                     <a href="javascript:void(0)" class="btn-primary" onclick="openAddModal()">Add New Course</a>
                 </nav>
-            </div>
+            </div><hr><br>
             
             @if(session('success_message'))
                 <div class="message success">{{ session('success_message') }}</div>
@@ -58,7 +58,6 @@
                 <div class="message error">{{ session('error_message') }}</div>
             @endif
             
-            <hr>
             <div class="attendance-table">
                 <table>
                     <thead>

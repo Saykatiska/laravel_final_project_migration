@@ -40,14 +40,14 @@
         </header>
     </div>
     
-    <main class="main">
-        <section class="enrollment-content-area">
-            <div class="table-header-controls">
+    <main class="admin-page-container">
+        <section>
+            <div class="user-management-header">
                 <h1>Enrollment Management</h1>
                 <nav class="sub-menu-inline">
                     <a href="javascript:void(0)" class="btn-primary" onclick="openEnrollModal()">Enroll New Student</a>
                 </nav>
-            </div>
+            </div><hr><br>
             
             @if(session('success_message'))
                 <div class="message success">{{ session('success_message') }}</div>
@@ -57,7 +57,7 @@
                 <div class="message error">{{ session('error_message') }}</div>
             @endif
 
-            <h2>Total Current Enrollments ({{ $total_count }})</h2>
+            <h2>Total Current Enrollments ({{ $total_count }})</h2><br>
             
             @forelse ($grouped_enrollments as $courseCode => $enrollments)
                 @php $first = $enrollments->first(); @endphp
@@ -65,6 +65,7 @@
                     {{ $courseCode }} - {{ $first->course_name }} 
                     ({{ $enrollments->count() }} Students)
                 </h3>
+                <br>
 
                 <div class="attendance-table">
                     <table>
@@ -90,7 +91,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
+                </div><br>
             @empty
                 <p>No students are currently enrolled in any courses.</p>
             @endforelse

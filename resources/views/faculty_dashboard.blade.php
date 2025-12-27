@@ -6,13 +6,103 @@
     <title>Faculty | Home</title>
     <link rel="stylesheet" href="{{ asset('css/core.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+    <style>
+        /* Enhanced Dashboard Spacing */
+        .container {
+            padding: 40px !important;
+            gap: 30px !important;
+        }
+
+        /* Sidebar improvements */
+        .details {
+            padding: 30px !important;
+            border-radius: 12px;
+        }
+
+        .details h3 {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+        }
+
+        #classListSidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .class-item {
+            padding: 12px 15px !important;
+            border-radius: 8px !important;
+            font-weight: 600;
+            background-color: rgba(0,0,0,0.2) !important;
+        }
+
+        .class-link.active .class-item {
+            background-color: #fff !important;
+            color: #800000 !important;
+        }
+
+        #classInfo {
+            line-height: 1.8;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        /* Main Content Card Spacing */
+        .attendance-table {
+            padding: 35px !important;
+            margin-bottom: 30px !important;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+        }
+
+        .attendance-table h3 {
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 1.4rem;
+        }
+
+        /* Table Whitespace */
+        th, td {
+            padding: 15px !important;
+            text-align: center !important;
+        }
+
+        /* Radio Button alignment */
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .update-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #eee;
+            margin: 40px 0;
+        }
+    </style>
 </head>
 <body>
     <div class="nav-bar">
         <header>
             <div class="logo">
                 <a href="{{ url('/faculty/faculty_dashboard') }}" style="display: flex; align-items: center; text-decoration: none; color: white;">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon h-6 w-6" viewBox="0 0 20 20" fill="currentColor" style="width: 24px; height: 24px; margin-right: 8px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width: 35px; height: 35px; margin-right: 8px;">
                         <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                     </svg>
                 </a>
@@ -37,31 +127,31 @@
                         <div class="class-item">{{ $course->course_code }}</div>
                     </a>
                 @empty
-                    <p>No courses assigned.</p>
+                    <p style="opacity: 0.7;">No courses assigned.</p>
                 @endforelse
             </div>
             <br>
             <h3>Class Info</h3>
             <p id="classInfo">
                 @if ($displayCourse)
-                    Class: {{ $displayCourse->course_code }}<br>
-                    Subject: {{ $displayCourse->course_name }}<br>
-                    Total Students: {{ count($students) }}
+                    <strong>Code:</strong> {{ $displayCourse->course_code }}<br>
+                    <strong>Subject:</strong> {{ $displayCourse->course_name }}<br>
+                    <strong>Students:</strong> {{ count($students) }}
                 @else
-                    No classes available.
+                    No classes selected.
                 @endif
             </p>
         </aside>
 
         <main class="main">
             @if(session('success_message'))
-                <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #c3e6cb;">
+                <div class="message success" style="margin-bottom: 25px;">
                     {{ session('success_message') }}
                 </div>
             @endif
 
             @if(session('error_message'))
-                <div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #f5c6cb;">
+                <div class="message error" style="margin-bottom: 25px;">
                     {{ session('error_message') }}
                 </div>
             @endif
@@ -71,28 +161,28 @@
                 <form id="attendanceForm" action="{{ url('/faculty/save-attendance?course_code=' . ($displayCourse->course_code ?? '')) }}" method="POST">
                     @csrf 
                     <input type="hidden" name="course_id" value="{{ $displayCourse->course_id ?? '' }}">
-                    <table id="attendanceTable">
+                    <table>
                         <thead>
                             <tr>
-                                <th>Student Name</th>
+                                <th style="text-align: left;">Student Name</th>
                                 <th>Present</th>
                                 <th>Absent</th>
                             </tr>
                         </thead>
-                        <tbody id="attendanceBody">
+                        <tbody>
                             @forelse ($students as $student)
                                 <tr>
-                                    <td>{{ $student->first_name }} {{ $student->last_name }}</td>
+                                    <td style="text-align: left; font-weight: 500;">{{ $student->first_name }} {{ $student->last_name }}</td>
                                     <td><input type="radio" name="student_{{ $student->user_id }}" value="Present" required></td>
                                     <td><input type="radio" name="student_{{ $student->user_id }}" value="Absent"></td>
                                 </tr>
                             @empty
-                                <tr><td colspan="3">No students found for this class.</td></tr>
+                                <tr><td colspan="3">No students enrolled in this class.</td></tr>
                             @endforelse
                         </tbody>
                     </table>
-                    @if($displayCourse)
-                        <button type="submit" class="update-btn">Submit Attendance</button>
+                    @if($displayCourse && count($students) > 0)
+                        <button type="submit" class="update-btn">Submit Daily Attendance</button>
                     @endif
                 </form>
             </section>
@@ -101,17 +191,17 @@
 
             <section class="attendance-table">
                 <h3>Class List ({{ $displayCourse->course_code ?? 'N/A' }})</h3>
-                <table id="classListTable">
+                <table>
                     <thead>
                         <tr>
-                            <th>Student Name</th>
-                            <th>Email</th>
+                            <th style="text-align: left;">Student Name</th>
+                            <th>Email Address</th>
                         </tr>
                     </thead>
-                    <tbody id="classListBody">
+                    <tbody>
                         @foreach ($students as $student)
                             <tr>
-                                <td>{{ $student->first_name }} {{ $student->last_name }}</td>
+                                <td style="text-align: left; font-weight: 500;">{{ $student->first_name }} {{ $student->last_name }}</td>
                                 <td>{{ $student->email }}</td>
                             </tr>
                         @endforeach

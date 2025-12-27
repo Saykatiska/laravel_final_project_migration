@@ -1,28 +1,21 @@
-form label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
+/* Center the entire insights section content */
+.attendance-insights {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers title and text horizontally */
+    text-align: center;
 }
-form input[type="text"], 
-form input[type="password"], 
-form input[type="email"],
-form select {
+
+/* Ensure the metrics container spans full width and centers the circle */
+.metrics {
+    display: flex;
+    justify-content: center; /* Centers the circle horizontally */
+    align-items: center;     /* Centers the circle vertically if the box has height */
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+    margin-top: 20px;       /* Adds whitespace above the circle */
 }
-form button {
-    background-color: #800000;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-}
-form button:hover {
-    background-color: #990000	;
+
+/* Optional: Ensure the circle itself has no off-center margins */
+.circle {
+    margin: 0 auto !important; 
 }
