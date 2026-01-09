@@ -99,7 +99,7 @@ class FacultyController extends Controller
 
         try {
             DB::transaction(function () use ($request, $courseId, $facultyId) {
-                $attendanceDate = now()->toDateString();
+                $attendanceDate = now()->toDateString(); // Gets '2026-01-09'
                 $data = $request->all();
 
                 foreach ($data as $key => $status) {
@@ -107,13 +107,20 @@ class FacultyController extends Controller
                     if (strpos($key, 'student_') === 0) {
                         $studentId = str_replace('student_', '', $key);
 
-                        DB::table('attendance_records')->insert([
-                            'student_id'      => $studentId,
-                            'course_id'       => $courseId,
-                            'attendance_date' => $attendanceDate,
-                            'status'          => $status,
-                            'recorded_by'     => $facultyId,
-                        ]);
+                        // FIX IS HERE: Use updateOrInsert instead of insert
+                        DB::table('attendance_records')->updateOrInsert(
+                            // 1. The Conditions (The "Unique Key")
+                            [
+                                'student_id'      => $studentId,
+                                'course_id'       => $courseId,
+                                'attendance_date' => $attendanceDate,
+                            ],
+                            // 2. The Values to Update/Insert
+                            [
+                                'status'      => $status, // Updates Present/Absent
+                                'recorded_by' => $facultyId,
+                            ]
+                        );
                     }
                 }
             });

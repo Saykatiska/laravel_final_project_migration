@@ -49,23 +49,24 @@
                 </nav>
             </div><hr><br>
             
-            @if(session('success_message'))
-                <div class="message success">{{ session('success_message') }}</div>
-            @endif
+                @if(session('success_message'))
+                    <div class="message success">{{ session('success_message') }}</div>
+                @endif
 
-            @if(session('error_message'))
-                <div class="message error">{{ session('error_message') }}</div>
-            @endif
+                @if(session('error_message'))
+                    <div class="message error">{{ session('error_message') }}</div>
+                @endif
 
-            <h2>Total Current Enrollments ({{ $total_count }})</h2><br>
-            
-            @forelse ($grouped_enrollments as $courseCode => $enrollments)
-                @php $first = $enrollments->first(); @endphp
-                <h3>
-                    {{ $courseCode }} - {{ $first->course_name }} 
-                    ({{ $enrollments->count() }} Students)
-                </h3>
+                <h2>Total Current Enrollments ({{ $total_count }})</h2><br>
+                
+                @forelse ($grouped_enrollments as $courseCode => $enrollments)
+                    @php $first = $enrollments->first(); @endphp
                 <br>
+                
+                <div class="course-header">
+                    <h3 class="course-title">{{ $courseCode }} - {{ $first->course_name }}</h3>
+                    <span class="count-badge">{{ $enrollments->count() }} Students</span>
+                </div>
 
                 <div class="attendance-table">
                     <table>

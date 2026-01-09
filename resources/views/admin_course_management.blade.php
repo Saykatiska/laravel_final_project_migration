@@ -49,11 +49,20 @@
                     <a href="javascript:void(0)" class="btn-primary" onclick="openAddModal()">Add New Course</a>
                 </nav>
             </div><hr><br>
-            
+
             @if(session('success_message'))
                 <div class="message success">{{ session('success_message') }}</div>
             @endif
 
+            @if ($errors->any())
+                <div class="message error">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @if(session('error_message'))
                 <div class="message error">{{ session('error_message') }}</div>
             @endif
@@ -169,6 +178,7 @@
 </div>
 
     <script>
+        
         function openAddModal() {
             document.getElementById('addCourseModal').style.display = "block";
         }

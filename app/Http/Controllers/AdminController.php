@@ -221,11 +221,17 @@ class AdminController extends Controller
     {
         try {
             DB::transaction(function () use ($id) {
-                // Delete enrollments first to satisfy foreign key constraints
+                // 1. Delete attendance records linked to this course (MISSING STEP)
+                DB::table('attendance_records')->where('course_id', $id)->delete();
+
+                // 2. Delete enrollments to satisfy foreign key constraints
                 DB::table('enrollments')->where('course_id', $id)->delete();
+
+                // 3. Finally, delete the course itself
                 DB::table('courses')->where('course_id', $id)->delete();
             });
-            return redirect('/admin/courses')->with('success_message', "Course and related data deleted.");
+
+            return redirect('/admin/courses')->with('success_message', "Course and all related data (attendance & enrollment) deleted.");
         } catch (\Exception $e) {
             return redirect('/admin/courses')->with('error_message', "Delete failed: " . $e->getMessage());
         }
