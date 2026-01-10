@@ -73,3 +73,92 @@
     border: 1px solid #f5c6cb;
     border-radius: 5px;
 }
+
+/* Enhanced Dashboard Spacing */
+        .container {
+            padding: 40px !important;
+            gap: 30px !important;
+        }
+
+        /* Sidebar improvements */
+        .details {
+            padding: 30px !important;
+            border-radius: 12px;
+        }
+
+        .details h3 {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+        }
+
+        #classListSidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .class-item {
+            padding: 12px 15px !important;
+            border-radius: 8px !important;
+            font-weight: 600;
+            background-color: rgba(0,0,0,0.2) !important;
+        }
+
+        .class-link.active .class-item {
+            background-color: #fff !important;
+            color: #800000 !important;
+        }
+
+        #classInfo {
+            line-height: 1.8;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        /* Main Content Card Spacing */
+        .attendance-table {
+            padding: 35px !important;
+            margin-bottom: 30px !important;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+        }
+
+        .attendance-table h3 {
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 1.4rem;
+        }
+
+        /* Table Whitespace */
+        th, td {
+            padding: 15px !important;
+            text-align: center !important;
+        }
+
+        /* Radio Button alignment */
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .update-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #eee;
+            margin: 40px 0;
+        }

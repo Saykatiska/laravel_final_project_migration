@@ -52,7 +52,6 @@ class AdminController extends Controller
     {
         $newStatus = $request->input('system_status');
 
-        // Laravel's updateOrInsert handles the logic of checking if it exists first
         DB::table('system_settings')->updateOrInsert(
             ['setting_key' => 'System_Status'],
             ['setting_value' => $newStatus]
@@ -60,8 +59,6 @@ class AdminController extends Controller
 
         return back()->with('success_message', "System setting updated to $newStatus!");
     }
-
-    // Add to AdminController.php
 
     public function userManagement()
     {
