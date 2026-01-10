@@ -192,7 +192,6 @@ a.btn-primary {
     padding: 25px;
 }
 
-/* Ensure both have exactly the same height and border logic */
 .form-group input, 
 .form-group select {
     height: 42px; /* Fixed height ensures alignment if side-by-side */

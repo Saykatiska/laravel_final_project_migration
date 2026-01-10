@@ -96,7 +96,7 @@ class AdminController extends Controller
 
     public function storeUser(Request $request)
     {
-        // 1. Validate the input (Replaces your manual sanitize function)
+        // 1. Validate the input
         $validated = $request->validate([
             'username'   => 'required|string|unique:users,username|max:255',
             'password'   => 'required|string|min:4',
@@ -113,7 +113,7 @@ class AdminController extends Controller
         return redirect('/admin/users')->with('success_message', "User {$validated['username']} created successfully!");
     }
 
-    // Update the updateUser method in AdminController.php
+    
     public function updateUser(Request $request, $id)
     {
         $validated = $request->validate([
@@ -134,7 +134,6 @@ class AdminController extends Controller
         return redirect('/admin/users')->with('success_message', "User updated successfully!");
     }
 
-    // Add to AdminController.php
 
     public function deleteUser($id)
     {
@@ -171,7 +170,6 @@ class AdminController extends Controller
         }
     }
 
-    // Add these to AdminController.php
 
     public function courseManagement()
     {
@@ -221,7 +219,7 @@ class AdminController extends Controller
     {
         try {
             DB::transaction(function () use ($id) {
-                // 1. Delete attendance records linked to this course (MISSING STEP)
+                // 1. Delete attendance records linked to this course
                 DB::table('attendance_records')->where('course_id', $id)->delete();
 
                 // 2. Delete enrollments to satisfy foreign key constraints
@@ -236,8 +234,6 @@ class AdminController extends Controller
             return redirect('/admin/courses')->with('error_message', "Delete failed: " . $e->getMessage());
         }
     }
-
-    // Add to AdminController.php
 
     public function enrollmentManagement()
     {

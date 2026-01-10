@@ -17,7 +17,7 @@ class FacultyController extends Controller
             ->where('faculty_id', $facultyId)
             ->get();
 
-        // 2. Determine which course is selected (default to first one)
+        // 2. Determine which course is selected
         $selectedCourseCode = $request->query('course_code', optional($courses->first())->course_code);
         
         $displayCourse = null;
@@ -49,7 +49,6 @@ class FacultyController extends Controller
             'selectedCourseCode' => $selectedCourseCode
         ]);
     }
-        // Add these methods to FacultyController.php
 
     public function editProfile()
     {
@@ -76,7 +75,7 @@ class FacultyController extends Controller
         // 2. Update Database
         DB::table('users')->where('user_id', $facultyId)->update($validated);
 
-        // 3. Update Session data (Optional, if you use these elsewhere)
+        // 3. Update Session data
         session([
             'username'   => $validated['username'],
             'first_name' => $validated['first_name'],
@@ -84,8 +83,6 @@ class FacultyController extends Controller
 
         return redirect('/faculty/profile')->with('success_message', 'Profile successfully updated!');
     }
-
-    // Add this to FacultyController.php
 
     public function saveAttendance(Request $request)
     {

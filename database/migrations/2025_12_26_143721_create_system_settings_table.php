@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
 {
     Schema::create('system_settings', function (Blueprint $table) {
-        // We add your columns here:
         $table->string('setting_key')->primary(); // Using this as the primary key since it's NOT NULL
         $table->text('setting_value')->nullable();
         $table->string('description')->nullable();

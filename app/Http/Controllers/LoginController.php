@@ -14,7 +14,7 @@ class LoginController extends Controller
 
     public function index()
     {
-        // 1. Check if user is already logged in (Replacement for isset($_SESSION['user_id']))
+        // 1. Check if user is already logged in
         if (Session::has('user_id')) {
             return $this->redirectBasedOnRole(Session::get('role'));
         }
@@ -45,7 +45,7 @@ class LoginController extends Controller
             return back()->with('error_message', "Username not found.");
         }
 
-        // 3. Verify Password (using your current plain-text match)
+        // 3. Verify Password
         if ($password === $user->password) {
             
             // --- START SYSTEM STATUS CHECK ---
@@ -79,8 +79,7 @@ class LoginController extends Controller
 
         return back()->with('error_message', "Invalid password.");
     }
-
-    // Helper function to handle your various dashboard redirects
+    
     private function redirectBasedOnRole($role)
     {
         if ($role === 'Admin') return redirect('/admin_dashboard');
