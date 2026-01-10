@@ -104,7 +104,6 @@ class FacultyController extends Controller
                     if (strpos($key, 'student_') === 0) {
                         $studentId = str_replace('student_', '', $key);
 
-                        // FIX IS HERE: Use updateOrInsert instead of insert
                         DB::table('attendance_records')->updateOrInsert(
                             // 1. The Conditions (The "Unique Key")
                             [
